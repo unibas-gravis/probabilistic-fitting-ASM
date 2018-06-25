@@ -1,2 +1,5 @@
-# probabilistic-fitting-ASM
-Project to the publication "Probabilistic Fitting of Active Shape Models". The projects contains the experiment code as well as the built models to reproduce the results.
+# Probabilistic Fitting of Active Shape Models
+This project makes the results of the publication "Probabilistic Fitting of Active Shape Models" reproducible.
+
+## Coming Soon
+The project will be filled in the next weeks. If the project is not filled by the date of the official publication, please remind the authors to do so.
