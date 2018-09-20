@@ -2,6 +2,8 @@ organization := "ch.unibas.cs.gravis"
 
 name := "shape18-asm-sampling"
 
+licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0"))
+
 scalaVersion := "2.12.6"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
