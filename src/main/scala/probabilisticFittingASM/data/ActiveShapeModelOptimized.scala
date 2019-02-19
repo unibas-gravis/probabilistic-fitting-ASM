@@ -18,7 +18,7 @@ package scalismo.statisticalmodel.asm
 
 import breeze.linalg.{DenseMatrix, DenseVector}
 import scalismo.common._
-import scalismo.geometry.{Dim, NDSpace, Point, Vector, _3D}
+import scalismo.geometry.{Dim, NDSpace, Point, EuclideanVector, _3D}
 import scalismo.image.DiscreteScalarImage
 import scalismo.mesh.TriangleMesh
 import scalismo.registration.{LandmarkRegistration, RigidTransformation, RigidTransformationSpace}
@@ -150,7 +150,7 @@ case class ActiveShapeModelOptimized(statisticalModel: StatisticalMeshModel, pro
         val trainingDataWithDisplacements = refPtIdsWithTargetPtAtModelSpace.map { case (id, targetPoint) => (id, targetPoint - statisticalModel.referenceMesh.pointSet.point(id)) }
         val cov = MultivariateNormalDistribution(DenseVector.zeros[Double](3), DenseMatrix.eye[Double](3) * 1e-5)
         val trainingData = trainingDataWithDisplacements.map { case (ptId, df) => (ptId, df, cov) }
-        val (_Minv, _QtL, yVec, mVec) = genericRegressionComputations[_3D,UnstructuredPointsDomain[_3D],Vector[_3D]](statisticalModel.gp, trainingData)
+        val (_Minv, _QtL, yVec, mVec) = genericRegressionComputations[_3D,UnstructuredPointsDomain[_3D],EuclideanVector[_3D]](statisticalModel.gp, trainingData)
         (_Minv * _QtL) * (yVec - mVec)
       }
 

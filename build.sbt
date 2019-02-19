@@ -14,7 +14,7 @@ resolvers += Resolver.bintrayRepo("unibas-gravis", "maven")
 
 libraryDependencies ++= Seq(
   "ch.unibas.cs.gravis" % "scalismo-native-all" % "4.0.+",
-  "ch.unibas.cs.gravis" %% "scalismo" % "0.16.0",
+  "ch.unibas.cs.gravis" %% "scalismo" % "0.17-RC1",
 
   "com.github.tototoshi" %% "scala-csv" % "1.3.4",
 

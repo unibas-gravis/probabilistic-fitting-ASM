@@ -16,17 +16,17 @@
 package probabilisticFittingASM.sampling.parameters
 
 import breeze.linalg.DenseVector
-import scalismo.geometry.{Point, Vector, _3D}
+import scalismo.geometry.{Point, EuclideanVector, _3D}
 import scalismo.registration.{RigidTransformation, RotationTransform, TranslationTransform}
 
 
 /**
   * Parameters describing the pose of an object.
-  * @param translation Translation vector.
+  * @param translation Translation EuclideanVector.
   * @param rotation Rotations angles aroung the x-, y- and z-axis.
   * @param rotationCenter Center used for the rotation.
   */
-case class PoseParameters(translation: Vector[_3D], rotation: (Double, Double, Double), rotationCenter: Point[_3D]) {
+case class PoseParameters(translation: EuclideanVector[_3D], rotation: (Double, Double, Double), rotationCenter: Point[_3D]) {
   def parameters: DenseVector[Double] = {
     DenseVector.vertcat(translation.toBreezeVector, DenseVector[Double](rotation._1, rotation._2, rotation._3)
       , DenseVector[Double](rotationCenter.x, rotationCenter.y, rotationCenter.z))

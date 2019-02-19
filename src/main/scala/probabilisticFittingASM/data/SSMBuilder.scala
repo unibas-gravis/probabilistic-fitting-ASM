@@ -17,7 +17,7 @@
 package probabilisticFittingASM.data
 
 import scalismo.common.{DiscreteField, UnstructuredPointsDomain}
-import scalismo.geometry.{Vector, _3D}
+import scalismo.geometry.{EuclideanVector, _3D}
 import scalismo.io.MeshIO
 import scalismo.mesh.TriangleMesh
 import scalismo.statisticalmodel.{DiscreteLowRankGaussianProcess, StatisticalMeshModel}
@@ -35,13 +35,13 @@ object SSMBuilder {
 
   def calculateModel(referenceMesh: TriangleMesh[_3D], meshes: Seq[TriangleMesh[_3D]]): StatisticalMeshModel = {
     val statisticalExamples = meshes.map { mesh =>
-      DiscreteField[_3D,UnstructuredPointsDomain[_3D],Vector[_3D]](
+      DiscreteField[_3D,UnstructuredPointsDomain[_3D],EuclideanVector[_3D]](
         referenceMesh.pointSet,
         mesh.pointSet.points.zip(referenceMesh.pointSet.points).map { case (p, r) => p - r }.toIndexedSeq
       ).interpolateNearestNeighbor()
     }
 
-    val dlrgp = DiscreteLowRankGaussianProcess.createUsingPCA[_3D, UnstructuredPointsDomain[_3D],Vector[_3D]](referenceMesh.pointSet, statisticalExamples)
+    val dlrgp = DiscreteLowRankGaussianProcess.createUsingPCA[_3D, UnstructuredPointsDomain[_3D],EuclideanVector[_3D]](referenceMesh.pointSet, statisticalExamples)
 
     val ssm = StatisticalMeshModel(referenceMesh, dlrgp.interpolateNearestNeighbor)
     ssm

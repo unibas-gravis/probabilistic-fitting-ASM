@@ -22,7 +22,7 @@ import probabilisticFittingASM.sampling.evaluators._
 import probabilisticFittingASM.sampling.parameters.{ModelFittingParameters, PoseParameters, ScaleParameter, ShapeParameters}
 import probabilisticFittingASM.sampling.proposals.{PoseProposal, ShapeProposal}
 import probabilisticFittingASM.utils.ExperimentOptions
-import scalismo.geometry.{Point, Vector, _3D}
+import scalismo.geometry.{Point, EuclideanVector, _3D}
 import scalismo.image.DiscreteScalarImage
 import scalismo.io.{ActiveShapeModelIO, ImageIO, MeshIO}
 import scalismo.mesh.TriangleMesh
@@ -114,7 +114,7 @@ object FitSamplingWithLines {
     val lineFiltered = MetropolisFilterProposal(priorFiltered,lineEvaluator)
     val chain = MetropolisHastings(lineFiltered, appearanceEval)
 
-    val initialTranslation = Vector(0,0,0)
+    val initialTranslation = EuclideanVector(0,0,0)
     val initialRotation = (0.0,0.0,0.0)
     val initialRotationCenter = Point(0,0,0)
     val initialPoseParameters = PoseParameters(initialTranslation,initialRotation,initialRotationCenter)

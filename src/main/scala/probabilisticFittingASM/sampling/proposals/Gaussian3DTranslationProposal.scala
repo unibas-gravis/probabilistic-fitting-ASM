@@ -16,7 +16,7 @@
 package probabilisticFittingASM.sampling.proposals
 
 import probabilisticFittingASM.sampling.parameters.ModelFittingParameters
-import scalismo.geometry.{Vector, _3D}
+import scalismo.geometry.{EuclideanVector, _3D}
 import scalismo.sampling.evaluators.GaussianEvaluator
 import scalismo.sampling.{ProposalGenerator, TransitionProbability}
 import scalismo.utils.Random
@@ -24,12 +24,12 @@ import scalismo.utils.Random
 /**
   * Gaussian translation proposal for the 3d space.
   */
-case class Gaussian3DTranslationProposal(sdev: Vector[_3D])(implicit rnd: Random)
+case class Gaussian3DTranslationProposal(sdev: EuclideanVector[_3D])(implicit rnd: Random)
   extends ProposalGenerator[ModelFittingParameters] with TransitionProbability[ModelFittingParameters] {
   override def propose(current: ModelFittingParameters): ModelFittingParameters = {
     val cpose = current.poseParameters
     val npose = cpose.copy(
-      translation = Vector(
+      translation = EuclideanVector(
         cpose.translation.x + rnd.scalaRandom.nextGaussian() * sdev.x,
         cpose.translation.y + rnd.scalaRandom.nextGaussian() * sdev.y,
         cpose.translation.z + rnd.scalaRandom.nextGaussian() * sdev.z)
@@ -57,5 +57,5 @@ case class Gaussian3DTranslationProposal(sdev: Vector[_3D])(implicit rnd: Random
   * Factory method with uses same standard deviation in all three directions.
   */
 object Gaussian3DTranslationProposal{
-  def apply(sdev: Double)(implicit rng: Random) = new Gaussian3DTranslationProposal(Vector(sdev,sdev,sdev))
+  def apply(sdev: Double)(implicit rng: Random) = new Gaussian3DTranslationProposal(EuclideanVector(sdev,sdev,sdev))
 }

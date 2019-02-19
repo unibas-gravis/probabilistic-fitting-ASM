@@ -21,7 +21,7 @@ import breeze.linalg.DenseVector
 import probabilisticFittingASM.data.DataProvider
 import probabilisticFittingASM.sampling.parameters.{ModelFittingParameters, PoseParameters, ShapeParameters}
 import probabilisticFittingASM.utils.ExperimentOptions
-import scalismo.geometry.{Landmark, Point, Vector, _3D}
+import scalismo.geometry.{Landmark, Point, EuclideanVector, _3D}
 import scalismo.image.DiscreteScalarImage
 import scalismo.io.{ActiveShapeModelIO, ImageIO, MeshIO}
 import scalismo.mesh.TriangleMesh
@@ -77,7 +77,7 @@ object FitStandardASM {
     val nSearchPoints = 61
     val searchDistance = 60f
 
-    val initParams = ModelFittingParameters(PoseParameters(Vector(0,0,0),(0,0,0),Point(0,0,0)),ShapeParameters(DenseVector.zeros[Double](asm.statisticalModel.rank)))
+    val initParams = ModelFittingParameters(PoseParameters(EuclideanVector(0,0,0),(0,0,0),Point(0,0,0)),ShapeParameters(DenseVector.zeros[Double](asm.statisticalModel.rank)))
 
     val fits = fittingIterations(fitConfig,nSearchPoints,f => searchDistance/nSearchPoints/f,asm, Seq(), target, Seq(), initParams.shapeParameters.parameters,PoseParameters.toTransform(initParams.poseParameters),iterations).zipWithIndex
     val result = fits.drop(iterations-1).next

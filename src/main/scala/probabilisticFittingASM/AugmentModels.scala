@@ -20,7 +20,7 @@ import java.nio.file.Files
 
 import probabilisticFittingASM.data.DataProvider
 import probabilisticFittingASM.utils.ExperimentOptions
-import scalismo.geometry.{Vector, _3D}
+import scalismo.geometry.{EuclideanVector, _3D}
 import scalismo.io.ActiveShapeModelIO
 import scalismo.kernels.{DiagonalKernel, GaussianKernel}
 import scalismo.numerics.UniformMeshSampler3D
@@ -72,7 +72,7 @@ object AugmentModels {
     val diagKernel = DiagonalKernel[_3D](kernel, 3)
     val sampler = UniformMeshSampler3D(model.referenceMesh, 700)
 
-    val gp = GaussianProcess[_3D,Vector[_3D]](diagKernel)
+    val gp = GaussianProcess[_3D,EuclideanVector[_3D]](diagKernel)
     val lrGP = LowRankGaussianProcess.approximateGP(gp, sampler, numBasisFunctions = 80)
     StatisticalMeshModel.augmentModel(model,lrGP)
   }
