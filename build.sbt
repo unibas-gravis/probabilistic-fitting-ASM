@@ -4,7 +4,7 @@ name := "shape18-asm-sampling"
 
 licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0"))
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.12.8"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
@@ -14,7 +14,7 @@ resolvers += Resolver.bintrayRepo("unibas-gravis", "maven")
 
 libraryDependencies ++= Seq(
   "ch.unibas.cs.gravis" % "scalismo-native-all" % "4.0.+",
-  "ch.unibas.cs.gravis" %% "scalismo" % "0.17-RC1",
+  "ch.unibas.cs.gravis" %% "scalismo" % "0.17.0",
 
   "com.github.tototoshi" %% "scala-csv" % "1.3.4",
 
