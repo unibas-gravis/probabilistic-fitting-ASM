@@ -27,7 +27,7 @@ First you need to obtain the 20 training items of the
 the ct-volumes and the segmentation maps. We provide our landmarks
 for those volumes. These are handclicked by a computer scientist,
 not by an internist. You should sort the volume data into the folders
-```data/sliver/volume-ct``` and ```data/sliver/segmentation``` like
+```data/sliver/volume-ct``` and ```data/sliver/volume-labelmap``` like
  this:
 
 ```
