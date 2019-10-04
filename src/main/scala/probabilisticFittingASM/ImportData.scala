@@ -40,7 +40,7 @@ object ImportData {
 
     val data = DataProvider(opts.root(),true)
 
-    val referenceLandmarks = LandmarkIO.readLandmarksCsv[_3D](data.rawLandmarkFile(data.ids.head)).get
+    val referenceLandmarks = LandmarkIO.readLandmarksJson[_3D](data.rawLandmarkFile(data.ids.head)).get
 
     data.ids.foreach{ id =>
       println(s"importing data for $id")
